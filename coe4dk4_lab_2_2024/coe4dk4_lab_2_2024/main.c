@@ -48,7 +48,7 @@ int
 main(void)
 {
   //Initialize output csv file to capture data
-  FILE* output_csv = fopen("experiment2-400.csv", "w+");
+  FILE* output_csv = fopen("experiment4-1995.csv", "w+");
   fprintf(output_csv, "random seed, packet arrival count, transmitted packet count, service fraction, packet arrival rate, mean delay\n");
 
   Simulation_Run_Ptr simulation_run;
@@ -93,7 +93,9 @@ main(void)
      */
 
     data.buffer = fifoqueue_new();
-    data.link   = server_new();
+    data.link0 = server_new();
+    data.link1 = server_new(); 
+
 
     /* 
      * Set the random number generator seed for this run.
