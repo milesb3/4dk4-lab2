@@ -47,6 +47,10 @@
 int
 main(void)
 {
+  //Initialize output csv file to capture data
+  FILE* output_csv = fopen("experiment2-400.csv", "w+");
+  fprintf(output_csv, "random seed, packet arrival count, transmitted packet count, service fraction, packet arrival rate, mean delay\n");
+
   Simulation_Run_Ptr simulation_run;
   Simulation_Run_Data data;
 
@@ -116,11 +120,11 @@ main(void)
      * Output results and clean up after ourselves.
      */
 
-    output_results(simulation_run);
+    output_results(simulation_run, output_csv);
     cleanup_memory(simulation_run);
   }
 
-  getchar();   /* Pause before finishing. */
+  fclose(output_csv); //Close output csv file
   return 0;
 }
 
