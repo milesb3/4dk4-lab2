@@ -93,8 +93,7 @@ main(void)
      */
 
     data.buffer = fifoqueue_new();
-    data.link0 = server_new();
-    data.link1 = server_new(); 
+    data.link = server_new(); 
 
 
     /* 

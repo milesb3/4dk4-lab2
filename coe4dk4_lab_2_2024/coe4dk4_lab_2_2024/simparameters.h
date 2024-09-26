@@ -28,9 +28,9 @@
 
 /******************************************************************************/
 
-#define PACKET_ARRIVAL_RATE 1995 /* packets per second */ //For experiment 4: 100, 300, 500, 700, 900, 1100, 1300, 1500, 1700, 1800, 1900, 1925, 1950, 1975, 1995, 2000, 2001, 2010, 2020, 2030, 2040, 2050, 2060, 2070, 2080, 2090, 2010
+#define PACKET_ARRIVAL_RATE 400 /* packets per second */ 
 #define PACKET_LENGTH 500 /* bits */
-#define LINK_BIT_RATE 500e3 /* bits per second */
+#define LINK_BIT_RATE 100e6 /* bits per second */
 #define RUNLENGTH 10e6 /* packets */
 
 /* Comma separated list of random seeds to run. */
