@@ -30,8 +30,18 @@
 
 #define PACKET_ARRIVAL_RATE 400 /* packets per second */ 
 #define PACKET_LENGTH 500 /* bits */
-#define LINK_BIT_RATE 100e6 /* bits per second */
+#define LINK_BIT_RATE 1e6 /* bits per second */
 #define RUNLENGTH 10e6 /* packets */
+
+#define DATA_MEAN_SERVICE_TIME 40 /* mean service time (seconds) for data traffic in experiment 6 */
+#define T_V 0.02 /* Voice packets arrive with fiexed interpacke arrival times of 20 ms */
+/*
+Payload size = 160 B
+160 B + 62 B header = 222 B = 1776 b
+Transmission link operates at 1 Mbps
+voice service time = 1776 b / 1e6 Mbps = 0.001776 s
+ */
+#define VOICE_SERVICE_TIME 0.001776
 
 /* Comma separated list of random seeds to run. */
 #define RANDOM_SEED_LIST 400243271, 400307241, 333333, 444444, 111111, 6666666, 21987319, 85949439, 7278, 9458948

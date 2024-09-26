@@ -48,7 +48,7 @@ int
 main(void)
 {
   //Initialize output csv file to capture data
-  FILE* output_csv = fopen("experiment4-1995.csv", "w+");
+  FILE* output_csv = fopen("experiment6-test.csv", "w+");
   fprintf(output_csv, "random seed, packet arrival count, transmitted packet count, service fraction, packet arrival rate, mean delay\n");
 
   Simulation_Run_Ptr simulation_run;
@@ -84,6 +84,8 @@ main(void)
     
     data.blip_counter = 0;
     data.arrival_count = 0;
+    data.data_arrival_count = 0;
+    data.voice_arrival_count = 0;
     data.number_of_packets_processed = 0;
     data.accumulated_delay = 0.0;
     data.random_seed = random_seed;
@@ -103,10 +105,13 @@ main(void)
     random_generator_initialize(random_seed);
 
     /* 
-     * Schedule the initial packet arrival for the current clock time (= 0).
+     * Schedule the initial data and voice arrivals for the current clock time (= 0).
      */
 
-    schedule_packet_arrival_event(simulation_run, 
+    schedule_data_arrival_event(simulation_run, 
+				  simulation_run_get_time(simulation_run));
+
+    schedule_voice_arrival_event(simulation_run, 
 				  simulation_run_get_time(simulation_run));
 
     /* 
