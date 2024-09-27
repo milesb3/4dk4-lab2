@@ -78,12 +78,12 @@ end_packet_transmission_event(Simulation_Run_Ptr simulation_run, void * link)
   this_packet = (Packet_Ptr) server_get(link);
 
   /* Collect statistics. */
-  if (this_packet->packet_type == "d") {
+  if (this_packet->packet_type == 'd') {
     data->number_of_data_packets_processed++;
     data->accumulated_data_delay += simulation_run_get_time(simulation_run) - 
       this_packet->arrive_time;
   } 
-  else if (this_packet->packet_type == "v") {
+  else if (this_packet->packet_type == 'v') {
     data->number_of_voice_packets_processed++;
     data->accumulated_voice_delay += simulation_run_get_time(simulation_run) - 
       this_packet->arrive_time;

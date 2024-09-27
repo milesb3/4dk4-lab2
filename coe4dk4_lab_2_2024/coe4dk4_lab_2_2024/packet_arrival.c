@@ -37,7 +37,7 @@
  * packet_arrival.c) is executed. An object can be attached to the event and
  * can be recovered in packet_arrival.c.
  */
-
+/*
 long int
 schedule_packet_arrival_event(Simulation_Run_Ptr simulation_run,
 			      double event_time)
@@ -50,7 +50,7 @@ schedule_packet_arrival_event(Simulation_Run_Ptr simulation_run,
 
   return simulation_run_schedule_event(simulation_run, event, event_time);
 }
-
+*/
 long int
 schedule_data_arrival_event(Simulation_Run_Ptr simulation_run,
 			      double event_time)
@@ -129,7 +129,7 @@ void data_arrival_event(Simulation_Run_Ptr simulation_run, void * ptr) {
   new_packet = (Packet_Ptr) xmalloc(sizeof(Packet));
   new_packet->arrive_time = simulation_run_get_time(simulation_run);
   new_packet->service_time = exponential_generator((double) DATA_MEAN_SERVICE_TIME);
-  new_packet->packet_type = "d";
+  new_packet->packet_type = 'd';
   new_packet->status = WAITING;
 
   /* 
@@ -149,7 +149,7 @@ void data_arrival_event(Simulation_Run_Ptr simulation_run, void * ptr) {
    * interarrival times gives us Poisson process arrivals.
    */
 
-  schedule_packet_arrival_event(simulation_run,
+  schedule_data_arrival_event(simulation_run,
 			simulation_run_get_time(simulation_run) +
 			exponential_generator((double) 1/PACKET_ARRIVAL_RATE));
 }
@@ -164,7 +164,7 @@ void voice_arrival_event(Simulation_Run_Ptr simulation_run, void * ptr) {
   new_packet = (Packet_Ptr) xmalloc(sizeof(Packet));
   new_packet->arrive_time = simulation_run_get_time(simulation_run);
   new_packet->service_time = VOICE_SERVICE_TIME;
-  new_packet->packet_type = "v";
+  new_packet->packet_type = 'v';
   new_packet->status = WAITING;
 
   /* 
@@ -184,6 +184,6 @@ void voice_arrival_event(Simulation_Run_Ptr simulation_run, void * ptr) {
    * interarrival times gives us Poisson process arrivals.
    */
 
-  schedule_packet_arrival_event(simulation_run,
+  schedule_voice_arrival_event(simulation_run,
 			simulation_run_get_time(simulation_run) + T_V);
 }
