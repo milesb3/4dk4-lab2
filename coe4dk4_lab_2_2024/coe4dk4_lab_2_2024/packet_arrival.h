@@ -35,10 +35,10 @@
 /*
  * Function prototypes
  */
-
+/*
 void
 packet_arrival_event(Simulation_Run_Ptr, void*);
-
+*/
 void data_arrival_event(Simulation_Run_Ptr, void*);
 
 void voice_arrival_event(Simulation_Run_Ptr, void*);

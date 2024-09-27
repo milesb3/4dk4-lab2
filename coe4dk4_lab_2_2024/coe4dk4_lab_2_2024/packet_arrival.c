@@ -85,7 +85,7 @@ schedule_voice_arrival_event(Simulation_Run_Ptr simulation_run,
  * queue if the server is busy. Otherwise it starts the transmission of the
  * packet. It then schedules the next packet arrival event.
  */
-
+/*
 void
 packet_arrival_event(Simulation_Run_Ptr simulation_run, void * ptr)
 {
@@ -100,10 +100,8 @@ packet_arrival_event(Simulation_Run_Ptr simulation_run, void * ptr)
   new_packet->service_time = get_packet_transmission_time();
   new_packet->status = WAITING;
 
-  /* 
-   * Start transmission if the data link is free. Otherwise put the packet into
-   * the buffer.
-   */
+   //Start transmission if the data link is free. Otherwise put the packet into
+   //the buffer.
 
   if(server_state(data->link) == BUSY) {
     fifoqueue_put(data->buffer, (void*) new_packet);
@@ -112,28 +110,26 @@ packet_arrival_event(Simulation_Run_Ptr simulation_run, void * ptr)
     start_transmission_on_link(simulation_run, new_packet, data->link);
   }
 
-  /* 
-   * Schedule the next packet arrival. Independent, exponentially distributed
-   * interarrival times gives us Poisson process arrivals.
-   */
+   //Schedule the next packet arrival. Independent, exponentially distributed
+   //interarrival times gives us Poisson process arrivals.
 
   schedule_packet_arrival_event(simulation_run,
 			simulation_run_get_time(simulation_run) +
 			exponential_generator((double) 1/PACKET_ARRIVAL_RATE));
 }
-
+*/
 //Experiment 6 arrival events
 void data_arrival_event(Simulation_Run_Ptr simulation_run, void * ptr) {
   Simulation_Run_Data_Ptr data;
   Packet_Ptr new_packet;
 
   data = (Simulation_Run_Data_Ptr) simulation_run_data(simulation_run);
-  data->arrival_count++;
   data->data_arrival_count++;
 
   new_packet = (Packet_Ptr) xmalloc(sizeof(Packet));
   new_packet->arrive_time = simulation_run_get_time(simulation_run);
   new_packet->service_time = exponential_generator((double) DATA_MEAN_SERVICE_TIME);
+  new_packet->packet_type = "d";
   new_packet->status = WAITING;
 
   /* 
@@ -163,12 +159,12 @@ void voice_arrival_event(Simulation_Run_Ptr simulation_run, void * ptr) {
   Packet_Ptr new_packet;
 
   data = (Simulation_Run_Data_Ptr) simulation_run_data(simulation_run);
-  data->arrival_count++;
   data->voice_arrival_count++;
 
   new_packet = (Packet_Ptr) xmalloc(sizeof(Packet));
   new_packet->arrive_time = simulation_run_get_time(simulation_run);
   new_packet->service_time = VOICE_SERVICE_TIME;
+  new_packet->packet_type = "v";
   new_packet->status = WAITING;
 
   /* 

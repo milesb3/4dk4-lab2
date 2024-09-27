@@ -49,7 +49,7 @@ main(void)
 {
   //Initialize output csv file to capture data
   FILE* output_csv = fopen("experiment6-test.csv", "w+");
-  fprintf(output_csv, "random seed, packet arrival count, transmitted packet count, service fraction, packet arrival rate, mean delay\n");
+  fprintf(output_csv, "random seed, data packet arrival count, voice packet arrival count, transmitted data packet count, transmitted voice packet count, data service fraction, voice service fraction, data packet arrival rate, data mean delay, voice mean delay\n");
 
   Simulation_Run_Ptr simulation_run;
   Simulation_Run_Data data;
@@ -83,11 +83,12 @@ main(void)
      */
     
     data.blip_counter = 0;
-    data.arrival_count = 0;
     data.data_arrival_count = 0;
     data.voice_arrival_count = 0;
-    data.number_of_packets_processed = 0;
-    data.accumulated_delay = 0.0;
+    data.number_of_data_packets_processed = 0;
+    data.number_of_voice_packets_processed = 0;
+    data.accumulated_data_delay = 0.0;
+    data.accumulated_voice_delay = 0.0;
     data.random_seed = random_seed;
  
     /* 
@@ -118,7 +119,7 @@ main(void)
      * Execute events until we are finished. 
      */
 
-    while(data.number_of_packets_processed < RUNLENGTH) {
+    while((data.number_of_data_packets_processed + data.number_of_voice_packets_processed) < RUNLENGTH) {
       simulation_run_execute_event(simulation_run);
     }
 

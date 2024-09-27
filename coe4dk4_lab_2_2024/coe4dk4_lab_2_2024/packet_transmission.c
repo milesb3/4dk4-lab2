@@ -78,9 +78,19 @@ end_packet_transmission_event(Simulation_Run_Ptr simulation_run, void * link)
   this_packet = (Packet_Ptr) server_get(link);
 
   /* Collect statistics. */
-  data->number_of_packets_processed++;
-  data->accumulated_delay += simulation_run_get_time(simulation_run) - 
-    this_packet->arrive_time;
+  if (this_packet->packet_type == "d") {
+    data->number_of_data_packets_processed++;
+    data->accumulated_data_delay += simulation_run_get_time(simulation_run) - 
+      this_packet->arrive_time;
+  } 
+  else if (this_packet->packet_type == "v") {
+    data->number_of_voice_packets_processed++;
+    data->accumulated_voice_delay += simulation_run_get_time(simulation_run) - 
+      this_packet->arrive_time;
+  }
+  else {
+    printf("Warning! A packet of unspecified type has been processed. No statistics have been gathered for it.\n");
+  }
 
   /* Output activity blip every so often. */
   output_progress_msg_to_screen(simulation_run);

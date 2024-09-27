@@ -38,11 +38,12 @@ typedef struct _simulation_run_data_
   Fifoqueue_Ptr buffer;
   Server_Ptr link;
   long int blip_counter;
-  long int arrival_count;
   long int data_arrival_count;
   long int voice_arrival_count;
-  long int number_of_packets_processed;
-  double accumulated_delay;
+  long int number_of_data_packets_processed;
+  long int number_of_voice_packets_processed;
+  double accumulated_data_delay;
+  double accumulated_voice_delay;
   unsigned random_seed;
 } Simulation_Run_Data, * Simulation_Run_Data_Ptr;
 
@@ -55,6 +56,7 @@ typedef struct _packet_
   int source_id;
   int destination_id;
   Packet_Status status;
+  char packet_type; //For experiment 6. "d" for data and "v" for voice
 } Packet, * Packet_Ptr;
 
 /*
