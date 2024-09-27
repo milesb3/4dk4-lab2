@@ -28,7 +28,7 @@
 
 /******************************************************************************/
 
-#define PACKET_ARRIVAL_RATE 5 /* packets per second */ 
+#define PACKET_ARRIVAL_RATE 30
 #define PACKET_LENGTH 500 /* bits */
 #define LINK_BIT_RATE 1e6 /* bits per second */
 #define RUNLENGTH 10e6 /* packets */
@@ -36,7 +36,7 @@
 #define DATA_MEAN_SERVICE_TIME 0.04 /* mean service time (seconds) for data traffic in experiment 6 */
 #define T_V 0.02 /* Voice packets arrive with fixed interpacket arrival times of 20 ms */
 
-// 64 Kbps * T_V * 1024 + (62*8) b of header / LINK_BIT_RATE = service time in s
+// 64 Kbps * T_V * 1024 + (62*8) b of header / LINK_BIT_RATE = voice service time in s
 #define VOICE_SERVICE_TIME (double) ((64 * 1024 * T_V + 62 * 8) / LINK_BIT_RATE)  
 
 /* Comma separated list of random seeds to run. */
