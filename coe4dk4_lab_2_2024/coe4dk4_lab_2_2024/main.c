@@ -48,7 +48,7 @@ int
 main(void)
 {
   //Initialize output csv file to capture data
-  FILE* output_csv = fopen("experiment6-30.csv", "w+");
+  FILE* output_csv = fopen("experiment7-30.csv", "w+");
   fprintf(output_csv, "random seed, data packet arrival count, voice packet arrival count, transmitted data packet count, transmitted voice packet count, data service fraction, voice service fraction, data packet arrival rate, data mean delay, voice mean delay\n");
 
   Simulation_Run_Ptr simulation_run;
@@ -95,7 +95,8 @@ main(void)
      * Create the packet buffer and transmission link, declared in main.h.
      */
 
-    data.buffer = fifoqueue_new();
+    data.data_buffer = fifoqueue_new();
+    data.voice_buffer = fifoqueue_new();
     data.link = server_new(); 
 
 

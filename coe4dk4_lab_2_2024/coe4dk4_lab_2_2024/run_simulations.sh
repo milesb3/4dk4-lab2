@@ -6,7 +6,7 @@ declare -a packet_arrival_rates=("1" "3" "5" "7" "9" "11" "13" "14" "15" "17" "1
 for packet_arrival_rate in "${packet_arrival_rates[@]}"
 do
     #Update packet arrival rate in main.c and simparameters.h
-    sed -i "s/experiment.*csv/experiment6-${packet_arrival_rate}.csv/" main.c
+    sed -i "s/experiment.*csv/experiment7-${packet_arrival_rate}.csv/" main.c
     sed -i "s/PACKET_ARRIVAL_RATE.*/PACKET_ARRIVAL_RATE ${packet_arrival_rate}/" simparameters.h
 
     #Recompile and run simulation 
